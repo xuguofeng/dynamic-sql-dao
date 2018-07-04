@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sql SYSTEM "sql.dtd" >
+<sqls>
+
+	<!-- SQL for Teacher -->
+
+	<sql id="Teacher_addObject">
+		<![CDATA[
+		insert into base_dao_teacher (name) values (#name#)
+		]]>
+	</sql>
+
+	<sql id="Teacher_deleteStudentsById">
+		<![CDATA[
+		delete from base_dao_student_teacher where teacher_id = ?
+		]]>
+	</sql>
+
+	<sql id="Teacher_updateObject">
+		<![CDATA[
+		update base_dao_teacher set name = #name# where id = #id#
+		]]>
+	</sql>
+	<sql id="Teacher_deleteObject">
+		<![CDATA[
+		delete from base_dao_teacher where id = ?
+		]]>
+	</sql>
+
+	<sql id="Teacher_getObject_int">
+		<![CDATA[
+		select id, name from base_dao_teacher where id = ?
+		]]>
+	</sql>
+
+	<sql id="Teacher_getObject_map">
+		<![CDATA[
+		select id, name from base_dao_teacher 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		order by id asc
+		]]>
+	</sql>
+
+	<sql id="Teacher_getObjects">
+		<![CDATA[
+		select id, name from base_dao_teacher order by id asc
+		]]>
+	</sql>
+
+	<sql id="Teacher_getObjects_map">
+		<![CDATA[
+		select id, name from base_dao_teacher 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		order by id asc
+		]]>
+	</sql>
+
+	<sql id="Teacher_getObjects_map_int_int">
+		<![CDATA[
+		select id, name from base_dao_teacher 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		order by id asc limit ?,?
+		]]>
+	</sql>
+
+	<sql id="Teacher_count_map">
+		<![CDATA[
+		select count(*) from base_dao_teacher 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		]]>
+	</sql>
+
+</sqls>
