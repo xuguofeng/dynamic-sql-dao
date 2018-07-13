@@ -1,5 +1,6 @@
 package org.net5ijy.dao.dynamic;
 
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,7 +20,6 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.net5ijy.dao.dynamic.util.GenericsUtil;
 import org.net5ijy.dao.dynamic.util.TransactionManager;
-import org.net5ijy.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,9 +55,10 @@ public abstract class BaseDaoSupport<E> implements BaseDao<E> {
 			while (m.find()) {
 				String arg = m.group(1);
 				try {
-					Method getter = this.entityClass.getMethod("get"
-							+ StringUtil.captureName(arg));
-					Object ret = getter.invoke(e, new Object[] {});
+					PropertyDescriptor pd = new PropertyDescriptor(arg,
+							this.entityClass);
+					Method getter = pd.getReadMethod();
+					Object ret = getter.invoke(e);
 					l.add(ret);
 				} catch (Exception e1) {
 					throw new RuntimeException("SQL模板[" + sql + "]参数注入出错["
@@ -120,9 +121,10 @@ public abstract class BaseDaoSupport<E> implements BaseDao<E> {
 			while (m.find()) {
 				String arg = m.group(1);
 				try {
-					Method getter = this.entityClass.getMethod("get"
-							+ StringUtil.captureName(arg));
-					Object ret = getter.invoke(e, new Object[] {});
+					PropertyDescriptor pd = new PropertyDescriptor(arg,
+							this.entityClass);
+					Method getter = pd.getReadMethod();
+					Object ret = getter.invoke(e);
 					l.add(ret);
 				} catch (Exception e1) {
 					throw new RuntimeException("SQL模板[" + sql + "]参数注入出错["
