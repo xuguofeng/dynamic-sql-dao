@@ -1,6 +1,8 @@
 package org.net5ijy.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,19 +16,23 @@ import org.junit.Before;
 import org.junit.Test;
 import org.net5ijy.dao.bean.Department;
 import org.net5ijy.dao.bean.Employee;
-import org.net5ijy.dao.jdbc.DepartmentDaoImpl;
-import org.net5ijy.dao.jdbc.EmployeeDaoImpl;
+import org.net5ijy.util.BeanFactory;
 
 public class TestEmployeeDao {
 
-	private static EmployeeDao employeeDao = new EmployeeDaoImpl();
-	private static DepartmentDao departmentDao = new DepartmentDaoImpl();
+	private EmployeeDao employeeDao;
+	private DepartmentDao departmentDao;
 
 	static SimpleDateFormat ymd = new SimpleDateFormat("yyyy-MM-dd");
 	static SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Before
 	public void before() {
+
+		// 获取工厂里面的DAO实现对象
+		departmentDao = BeanFactory.getObject(DepartmentDao.class);
+		employeeDao = BeanFactory.getObject(EmployeeDao.class);
+
 		// 添加IT技术部
 		Department dept = new Department();
 		dept.setCreateTime(new Date());

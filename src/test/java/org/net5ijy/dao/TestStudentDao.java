@@ -1,6 +1,7 @@
 package org.net5ijy.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,19 +12,27 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.net5ijy.dao.bean.Student;
 import org.net5ijy.dao.bean.Teacher;
-import org.net5ijy.dao.jdbc.StudentDaoImpl;
-import org.net5ijy.dao.jdbc.TeacherDaoImpl;
+import org.net5ijy.util.BeanFactory;
 
 public class TestStudentDao {
 
-	static StudentDao studentDao = new StudentDaoImpl();
-	static TeacherDao teacherDao = new TeacherDaoImpl();
+	private StudentDao studentDao;
+	private TeacherDao teacherDao;
 
 	static SimpleDateFormat ymd = new SimpleDateFormat("yyyy-MM-dd");
 	static SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	@Before
+	public void before() {
+
+		// 获取工厂里面的DAO实现对象
+		studentDao = BeanFactory.getObject(StudentDao.class);
+		teacherDao = BeanFactory.getObject(TeacherDao.class);
+	}
 
 	public Set<Teacher> preAddStudent() {
 

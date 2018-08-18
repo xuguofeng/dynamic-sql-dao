@@ -13,17 +13,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.net5ijy.dao.bean.Department;
-import org.net5ijy.dao.jdbc.DepartmentDaoImpl;
+import org.net5ijy.util.BeanFactory;
 
 public class TestDepartmentDao {
 
-	private static DepartmentDao departmentDao = new DepartmentDaoImpl();
+	private DepartmentDao departmentDao;
 
 	static SimpleDateFormat ymd = new SimpleDateFormat("yyyy-MM-dd");
 	static SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Before
 	public void before() {
+
+		// 获取工厂里面的DAO实现对象
+		departmentDao = BeanFactory.getObject(DepartmentDao.class);
+
 		// 添加IT技术部
 		Department dept = new Department();
 		dept.setCreateTime(new Date());

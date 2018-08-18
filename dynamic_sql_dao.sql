@@ -50,7 +50,7 @@ CREATE TABLE `base_dao_employee` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `emp_name_unique` (`name`),
   KEY `emp_dept+fk` (`department_id`),
-  CONSTRAINT `emp_dept+fk` FOREIGN KEY (`department_id`) REFERENCES `base_dao_department` (`id`)
+  CONSTRAINT `emp_dept_fk` FOREIGN KEY (`department_id`) REFERENCES `base_dao_department` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -58,6 +58,16 @@ CREATE TABLE `base_dao_employee` (
 -- ----------------------------
 DROP TABLE IF EXISTS `base_dao_student`;
 CREATE TABLE `base_dao_student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for base_dao_teacher
+-- ----------------------------
+DROP TABLE IF EXISTS `base_dao_teacher`;
+CREATE TABLE `base_dao_teacher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
@@ -74,14 +84,4 @@ CREATE TABLE `base_dao_student_teacher` (
   KEY `teacher_fk` (`teacher_id`),
   CONSTRAINT `student_fk` FOREIGN KEY (`student_id`) REFERENCES `base_dao_student` (`id`),
   CONSTRAINT `teacher_fk` FOREIGN KEY (`teacher_id`) REFERENCES `base_dao_teacher` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for base_dao_teacher
--- ----------------------------
-DROP TABLE IF EXISTS `base_dao_teacher`;
-CREATE TABLE `base_dao_teacher` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

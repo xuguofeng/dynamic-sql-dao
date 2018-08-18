@@ -6,18 +6,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.net5ijy.dao.StudentDao;
 import org.net5ijy.dao.TeacherDao;
 import org.net5ijy.dao.bean.Student;
 import org.net5ijy.dao.bean.Teacher;
 import org.net5ijy.dao.dynamic.BaseDaoSupport;
+import org.net5ijy.util.annotation.Transactional;
 
+@Transactional
 public class StudentDaoImpl extends BaseDaoSupport<Student> implements
 		StudentDao {
 
-	private TeacherDao teacherDao = new TeacherDaoImpl();
+	private TeacherDao teacherDao;
+
+	@Resource
+	public void setTeacherDao(TeacherDao teacherDao) {
+		this.teacherDao = teacherDao;
+	}
 
 	@Override
+	@Transactional
 	public int addObject(Student e) {
 		int id = super.addObject(e);
 		Set<Teacher> teachers = e.getTeachers();
@@ -32,12 +42,14 @@ public class StudentDaoImpl extends BaseDaoSupport<Student> implements
 	}
 
 	@Override
+	@Transactional
 	public boolean deleteObject(Integer id) {
 		super.execute("Student_deleteTeachersById", id);
 		return super.deleteObject(id);
 	}
 
 	@Override
+	@Transactional
 	public boolean updateObject(Student e) {
 		super.execute("Student_deleteTeachersById", e.getId());
 		Set<Teacher> teachers = e.getTeachers();
