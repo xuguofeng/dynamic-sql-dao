@@ -3,10 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.net5ijy.dynamic-sql-dao</groupId>
-	<artifactId>dynamic-sql-dao</artifactId>
+
+	<groupId>org.net5ijy.dao</groupId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dynamic-sql-dao</name>
+	<artifactId>dynamic-sql-dao</artifactId>
+	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,12 +17,7 @@
 
 	<dependencies>
 
-		<!-- 数据库驱动 和 连接池 -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.38</version>
-		</dependency>
+		<!-- 连接池 -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -43,13 +39,6 @@
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.23</version>
-		</dependency>
-		<!-- 测试 -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- 日志 -->
 		<dependency>

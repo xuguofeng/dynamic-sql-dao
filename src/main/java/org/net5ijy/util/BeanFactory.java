@@ -99,7 +99,6 @@ public final class BeanFactory {
 				if (clazz.getAnnotation(Transactional.class) != null) {
 					// 使用JDK动态代理
 					obj = TransactionProxy.proxyFor(obj);
-					// 使用cglib动态代理
 					// debug log
 					if (log.isDebugEnabled()) {
 						log.debug("实例化并创建代理[" + name + ", " + clazz.getName()

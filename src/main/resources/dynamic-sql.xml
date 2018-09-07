@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dynamic-sql SYSTEM "dynamic-sql.dtd" >
-<files>
-	<file path="org/net5ijy/dao/sql/employee.xml"></file>
-	<file path="org/net5ijy/dao/sql/department.xml"></file>
-	<file path="org/net5ijy/dao/sql/student.xml"></file>
-	<file path="org/net5ijy/dao/sql/teacher.xml"></file>
-</files>
