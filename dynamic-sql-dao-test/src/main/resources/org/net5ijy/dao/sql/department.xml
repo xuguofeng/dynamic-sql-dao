@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sql SYSTEM "sql.dtd" >
+<sqls>
+
+	<!-- SQL for Department -->
+
+	<sql id="Department_addObject">
+		<![CDATA[
+		insert into base_dao_department 
+		(name, description, create_time, parent_department_id) 
+		values 
+		(#name#, #description#, #createTime#, #parentDepartmentId#)
+		]]>
+	</sql>
+	<sql id="Department_updateObject">
+		<![CDATA[
+		update base_dao_department set 
+		name = #name#, description = #description#, 
+		parent_department_id = #parentDepartmentId#, version = version+1 
+		where id = #id# and version = #version#
+		]]>
+	</sql>
+	<sql id="Department_deleteObject">
+		<![CDATA[
+		delete from base_dao_department where id = ?
+		]]>
+	</sql>
+
+	<sql id="Department_getObject_int">
+		<![CDATA[
+		select 
+		id, name, description, create_time as createTime, parent_department_id as parentDepartmentId, version 
+		from base_dao_department where id = ?
+		]]>
+	</sql>
+
+	<sql id="Department_getObject_map">
+		<![CDATA[
+		select 
+		id, name, description, create_time as createTime, parent_department_id as parentDepartmentId, version 
+		from base_dao_department 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name like #name# 
+			</#if>
+			<#if map['startTime']??>
+				and create_time >= #startTime# 
+			</#if>
+			<#if map['endTime']??>
+				and create_time <= #endTime# 
+			</#if>
+			<#if map['parentDepartmentId']??>
+				and parent_department_id = #parentDepartmentId# 
+			</#if>
+		</#if>
+		order by id asc
+		]]>
+	</sql>
+
+	<sql id="Department_getObjects">
+		<![CDATA[
+		select 
+		id, name, description, create_time as createTime, parent_department_id as parentDepartmentId, version 
+		from base_dao_department order by id asc
+		]]>
+	</sql>
+
+	<sql id="Department_getObjects_map">
+		<![CDATA[
+		select 
+		id, name, description, create_time as createTime, parent_department_id as parentDepartmentId, version 
+		from base_dao_department 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name like #name# 
+			</#if>
+			<#if map['startTime']??>
+				and create_time >= #startTime# 
+			</#if>
+			<#if map['endTime']??>
+				and create_time <= #endTime# 
+			</#if>
+			<#if map['parentDepartmentId']??>
+				and parent_department_id = #parentDepartmentId# 
+			</#if>
+		</#if>
+		order by id asc
+		]]>
+	</sql>
+
+	<sql id="Department_getObjects_map_int_int">
+		<![CDATA[
+		select 
+		id, name, description, create_time as createTime, parent_department_id as parentDepartmentId, version 
+		from base_dao_department 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name like #name# 
+			</#if>
+			<#if map['startTime']??>
+				and create_time >= #startTime# 
+			</#if>
+			<#if map['endTime']??>
+				and create_time <= #endTime# 
+			</#if>
+			<#if map['parentDepartmentId']??>
+				and parent_department_id = #parentDepartmentId# 
+			</#if>
+		</#if>
+		order by id asc limit ?,?
+		]]>
+	</sql>
+
+	<sql id="Department_count_map">
+		<![CDATA[
+		select count(*) from base_dao_department 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name like #name# 
+			</#if>
+			<#if map['startTime']??>
+				and create_time >= #startTime# 
+			</#if>
+			<#if map['endTime']??>
+				and create_time <= #endTime# 
+			</#if>
+			<#if map['parentDepartmentId']??>
+				and parent_department_id = #parentDepartmentId# 
+			</#if>
+		</#if>
+		]]>
+	</sql>
+
+</sqls>

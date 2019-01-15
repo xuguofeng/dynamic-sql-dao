@@ -4,19 +4,19 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.net5ijy.dao</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>org.net5ijy.dao</groupId>
+		<artifactId>dynamic-sql-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../dynamic-sql-parent</relativePath>
+	</parent>
+
 	<artifactId>dynamic-sql-dao</artifactId>
 	<packaging>jar</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-	</properties>
+	<name>dynamic-sql-dao</name>
 
 	<dependencies>
-
 		<!-- 连接池 -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -51,21 +51,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.0</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

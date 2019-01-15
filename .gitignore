@@ -4,3 +4,6 @@ target/
 # .classpath
 # target/
 # .settings/
+.metadata/
+RemoteSystemsTempFiles/
+Servers/

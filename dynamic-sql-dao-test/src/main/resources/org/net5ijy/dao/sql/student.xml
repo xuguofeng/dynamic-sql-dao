@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sql SYSTEM "sql.dtd" >
+<sqls>
+
+	<!-- SQL for Student -->
+
+	<sql id="Student_addObject">
+		<![CDATA[
+		insert into base_dao_student (name) values (#name#)
+		]]>
+	</sql>
+
+	<sql id="Student_add_student_teacher">
+		<![CDATA[
+		insert into base_dao_student_teacher (student_id, teacher_id) values (?, ?)
+		]]>
+	</sql>
+
+	<sql id="Student_deleteTeachersById">
+		<![CDATA[
+		delete from base_dao_student_teacher where student_id = ?
+		]]>
+	</sql>
+
+	<sql id="Student_updateObject">
+		<![CDATA[
+		update base_dao_student set name = #name# where id = #id#
+		]]>
+	</sql>
+	<sql id="Student_deleteObject">
+		<![CDATA[
+		delete from base_dao_student where id = ?
+		]]>
+	</sql>
+
+	<sql id="Student_getObject_int">
+		<![CDATA[
+		select id, name from base_dao_student where id = ?
+		]]>
+	</sql>
+
+	<sql id="Student_getObject_map">
+		<![CDATA[
+		select id, name from base_dao_student 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		order by id asc
+		]]>
+	</sql>
+
+	<sql id="Student_getTeacherIdsById">
+		<![CDATA[
+		select teacher_id from base_dao_student_teacher where student_id = #studentId#
+		]]>
+	</sql>
+
+	<sql id="Student_getObjects">
+		<![CDATA[
+		select id, name from base_dao_student order by id asc
+		]]>
+	</sql>
+
+	<sql id="Student_getObjects_map">
+		<![CDATA[
+		select id, name from base_dao_student 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		order by id asc
+		]]>
+	</sql>
+
+	<sql id="Student_getObjects_map_int_int">
+		<![CDATA[
+		select id, name from base_dao_student 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		order by id asc limit ?,?
+		]]>
+	</sql>
+
+	<sql id="Student_count_map">
+		<![CDATA[
+		select count(*) from base_dao_student 
+		<#if map??&&(map?size>0)>
+			where 
+			<#if map['name']??>
+				and name = #name# 
+			</#if>
+		</#if>
+		]]>
+	</sql>
+
+</sqls>

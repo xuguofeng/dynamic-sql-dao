@@ -1,0 +1,18 @@
+select 
+id, name, age, phone, email, create_time from base_dao_employee 
+<#if map??&&(map?size>0)>
+	where 
+	<#if map['name']??>
+		and name = #name# 
+	</#if>
+	<#if map['age']??>
+		and age = #age# 
+	</#if>
+	<#if map['phone']??>
+		and phone = #phone# 
+	</#if>
+	<#if map['email']??>
+		and email = #email# 
+	</#if>
+</#if>
+order by id asc
